@@ -1,4 +1,4 @@
-# Week 9: React State & Interactive Components
+# Week 8: React State & Interactive Components
 ## Breaking Down the Monolith with Component State
 
 ### Learning Objectives
@@ -12,19 +12,19 @@ By completing this project, you will:
 
 ### Prerequisites
 Before starting, you should have:
-- Completed Week 9 lecture on React State & Interactivity
+- Completed Week 8 lecture on React State & Interactivity
 - Reviewed prep work chapters: React Front To Back Chapters 3-4 (State & Forms)
-- Your code from Week 8 React migration project (highly recommended)
+- Your code from Week 7 React migration project (highly recommended)
 - Understanding of the useState hook and event handling in React
 
 ### Project Overview
-This week, you'll transform your Week 8 monolithic portfolio component into a proper React application with multiple components that manage and share state. You'll break down the giant App.jsx into logical components (Navbar, Hero, Skills, Projects, Contact) and use state to make features truly interactive - like filtering projects, validating forms in real-time, and managing UI interactions.
+This week, you'll transform your Week 7 monolithic portfolio component into a proper React application with multiple components that manage and share state. You'll break down the giant App.jsx into logical components (Navbar, Hero, Skills, Projects, Contact) and use state to make features truly interactive - like filtering projects, validating forms in real-time, and managing UI interactions.
 
 This project demonstrates the core state management patterns you'll use in every React application, preparing you for building complex interactive UIs.
 
 ### Getting Started
 
-**First:** Accept the GitHub Classroom assignment link provided by your instructor. This will create a new repository with the Week 9 starter code.
+**First:** Accept the GitHub Classroom assignment link provided by your instructor. This will create a new repository with the Week 8 starter code.
 
 1. **Clone your new repository:**
    ```bash
@@ -34,11 +34,11 @@ This project demonstrates the core state management patterns you'll use in every
 
 2. **Choose your path:**
 
-#### Option A: Continue from Week 8 (Recommended)
-If you completed the Week 8 project and want to build upon it:
+#### Option A: Continue from Week 7 (Recommended)
+If you completed the Week 7 project and want to build upon it:
 
 1. **Keep the starter files** - You'll need `package.json` and `vite.config.js`
-2. **Copy your Week 8 code** into the starter folder:
+2. **Copy your Week 7 code** into the starter folder:
    - Copy your `src/App.jsx` to use as reference
    - Copy your `src/App.css` to use as-is
    - You'll be breaking apart App.jsx into multiple components
@@ -68,10 +68,10 @@ If starting fresh, use the provided starter files:
 
 #### Part 1: Understanding Component Decomposition (10 minutes)
 
-**The Week 8 Problem:**
+**The Week 7 Problem:**
 Last week, you had ONE giant App.jsx component with ALL the HTML and ALL the JavaScript. While this worked, it's not how React applications are built in practice.
 
-**The Week 9 Solution:**
+**The Week 8 Solution:**
 Break the monolith into logical, reusable components:
 - **Navbar** - Navigation with state for mobile menu
 - **Hero** - Hero section (mostly presentational)
@@ -85,7 +85,7 @@ Break the monolith into logical, reusable components:
 - State is lifted to parent when siblings need to share it
 - Don't store what you can derive from existing state
 
-**Review your Week 8 App.jsx:**
+**Review your Week 7 App.jsx:**
 Look at all the event handlers and DOM manipulation. Ask yourself:
 - What state does the navbar need? (mobile menu open/closed)
 - What state do projects need? (active filter, filtered items)
@@ -180,7 +180,7 @@ export default App
 
 **Step 3: Update CSS for state-based classes**
 
-Make sure your `App.css` has these styles (you probably already have them from Week 8):
+Make sure your `App.css` has these styles (you probably already have them from Week 7):
 
 ```css
 /* Mobile menu hidden by default */
@@ -834,7 +834,7 @@ What's happening here:
 - Used when only one component needs the data
 - Examples: mobile menu open/closed, active filter, form data
 
-**App-Level State (Coming in Week 10):**
+**App-Level State (Coming in Week 9):**
 - Used when multiple components need the same data
 - Will learn Context API and state lifting patterns
 
@@ -936,14 +936,14 @@ Once everything works, try these enhancements:
 - [Controlled Components](https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable)
 - [State as a Snapshot](https://react.dev/learn/state-as-a-snapshot)
 
-**Week 9 Prep Work:**
+**Week 8 Prep Work:**
 - React Front To Back Chapter 3 - Components, Props, and State
 - React Front To Back Chapter 4 - Forms, Validation, and Simple Animation
 
 **Related Week Projects:**
-- Week 7: Interactive Portfolio (JavaScript functionality)
-- Week 8: React Migration (monolithic component you're breaking down)
-- Week 10: Advanced State Management (Context API, useEffect)
+- Week 6: Interactive Portfolio (JavaScript functionality)
+- Week 7: React Migration (monolithic component you're breaking down)
+- Week 9: Advanced State Management (Context API, useEffect)
 
 **Patterns Learned:**
 - Component decomposition
@@ -1007,7 +1007,7 @@ Before submitting, ensure you have:
 After completing the project, consider:
 
 1. **How does state management differ from DOM manipulation?**
-   - Compare Week 7 (querySelector) vs Week 9 (useState)
+   - Compare Week 6 (querySelector) vs Week 8 (useState)
    - Which is more predictable? Why?
 
 2. **When should state be component-level vs app-level?**
@@ -1026,4 +1026,4 @@ Keep these patterns in mind - you'll use them in every React application you bui
 
 ---
 
-**Congratulations!** You've transformed your monolithic component into a clean, state-managed React application! You now understand the core patterns of React development: component decomposition, state management, controlled components, and immutable updates. In Week 10, you'll learn how to share state across components with Context API and fetch data with useEffect.
+**Congratulations!** You've transformed your monolithic component into a clean, state-managed React application! You now understand the core patterns of React development: component decomposition, state management, controlled components, and immutable updates. In Week 9, you'll learn how to share state across components with Context API and fetch data with useEffect.
