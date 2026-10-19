@@ -1,4 +1,4 @@
-/* Week 9 Starter Styles - Base CSS Variables and Reset */
+/* Week 8 starter styles - base CSS variables and reset */
 
 :root {
   /* Colors */
@@ -50,7 +50,7 @@ body {
   background-color: var(--light-bg);
 }
 
-/* TODO: Copy your Week 8 styles here, or use the provided styles below */
+/* TODO: copy your week 7 styles here, or use the provided styles below */
 
-/* You can copy all your styles from Week 8 App.css here */
+/* You can copy all your styles from your week 7 App.css here */
 /* OR use these starter styles to get going quickly */

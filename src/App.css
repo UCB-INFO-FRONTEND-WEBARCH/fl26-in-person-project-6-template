@@ -1,4 +1,4 @@
-/* Week 9 Portfolio Styles - Copy from Week 8 or use these complete styles */
+/* Week 8 portfolio styles - copy from week 7 or use these complete styles */
 
 * {
     margin: 0;
@@ -67,7 +67,7 @@ a:hover {
     color: var(--secondary-color);
 }
 
-/* Navigation - Week 9: Use state for mobile menu */
+/* Navigation - Week 8: use state for mobile menu */
 #navbar {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     padding: var(--spacing-sm) var(--spacing-md);
@@ -285,7 +285,7 @@ a:hover {
     color: var(--text-light);
 }
 
-/* Projects Section - Week 9: Use state for filtering */
+/* Projects Section - Week 8: use state for filtering */
 .filter-buttons {
     display: flex;
     justify-content: center;
@@ -440,7 +440,7 @@ a:hover {
     margin-bottom: var(--spacing-xs);
 }
 
-/* Contact Form - Week 9: Use state for form data and validation */
+/* Contact Form - Week 8: use state for form data and validation */
 .contact-content {
     max-width: 800px;
     margin: 0 auto;
@@ -492,7 +492,7 @@ a:hover {
     resize: vertical;
 }
 
-/* Form Validation - Week 9 State-based validation */
+/* Form Validation - Week 8 state-based validation */
 .error-message {
     color: #dc2626;
     font-size: 0.875rem;

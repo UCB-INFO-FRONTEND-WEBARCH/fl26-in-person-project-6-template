@@ -67,7 +67,7 @@ If you completed In-Person Project 5 and want to break apart your own component:
 3. **Decide on your CSS.** If your week 7 `App.css` is the stock file, keep the starter's `App.css`; it is the same stylesheet plus the state-driven classes. If you customized your CSS last week, copy your `App.css` over the starter's and make sure the four classes named above exist in it.
 
 #### Option B: Fresh Start
-If you did not finish In-Person Project 5, decompose the class solution instead. It is already in this repository under `week7-reference/` (`App.jsx`, one 544-line component, and `App.css`): the finished week 7 portfolio with the navbar toggle, the project filter and the contact form all inside a single `App` function. Everywhere a step says "your week 7 `App.jsx`", use `week7-reference/App.jsx`. Vite ignores that folder; your work goes in `src/`. The content (name, skills, projects) is the reference's; change it to yours as you go if you like, but the state work comes first.
+If you did not finish In-Person Project 5, decompose the class solution instead. It is already in this repository under `week7-reference/` (`App.jsx`, one 544-line component, and `App.css`): the finished week 7 portfolio with the navbar toggle, the project filter and the contact form all inside a single `App` function. Everywhere a step says "your week 7 `App.jsx`", use `week7-reference/App.jsx`. Vite ignores that folder; your work goes in `src/`. One thing to expect: the reference drives its menu, filter and form with `querySelector` and `classList`, not React state, so in Parts 2 to 4 you rewrite those handlers in React rather than moving them; the markup and the CSS move as they are. The content (name, skills, projects) is the reference's; change it to yours as you go if you like, but the state work comes first.
 
 ### Step-by-Step Instructions
 
@@ -88,7 +88,7 @@ If you did not finish In-Person Project 5, decompose the class solution instead.
 
 **Key principle, component-level state:** each component manages its own state. State is lifted to the parent only when siblings need to share it. Do not store what you can derive from existing state.
 
-**Do this now:** create the folder `src/components/`. Open your week 7 `App.jsx` (or the week 6 reference) and, for each of the three interactive features, write one line in a comment at the top of the matching new file saying what state it needs:
+**Do this now:** create the folder `src/components/`. Open your week 7 `App.jsx` (or `week7-reference/App.jsx`) and, for each of the three interactive features, write one line in a comment at the top of the matching new file saying what state it needs:
 - Navbar: is the mobile menu open? (a boolean)
 - Projects: which filter is active? (a string such as `'all'`)
 - Contact: what has the user typed, and which fields have errors? (two objects)
@@ -105,6 +105,7 @@ Requirements:
 - The hamburger button's `onClick` flips that boolean.
 - The menu's `className` is computed from the state, for example `` className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`} ``.
 - Each nav link's `onClick` still prevents the default, scrolls smoothly to its section, and then closes the menu by setting the state to `false`.
+- The file ends with `export default Navbar`, and `App.jsx` brings it in with `import Navbar from './components/Navbar'` (one component per file, one default export each; every component in Parts 3 to 5 follows the same two lines).
 
 What is happening: the open/closed fact lives in state, and React re-renders the `className` from it. No `querySelector`, no `classList`.
 
@@ -120,6 +121,7 @@ Common mistakes:
 - Toggling a class on the DOM instead of changing state
 - Forgetting the conditional `className`
 - Forgetting `e.preventDefault()` on the navigation links
+- Testing the menu at desktop width: the hamburger and `.nav-menu.active` only apply at a narrow browser width (the media query in `App.css`), so narrow the window first
 
 **Checkpoint (end of Part 2):** at a narrow browser width the hamburger opens and closes the menu, clicking a link scrolls to the section and closes the menu, and `App.jsx` no longer contains any nav markup.
 
@@ -179,14 +181,16 @@ Common mistakes:
 
 #### Part 5: Adding the Remaining Components (15 minutes)
 
-Create `src/components/Hero.jsx`, `About.jsx`, `Skills.jsx` and `Footer.jsx`, each exporting one function component with the matching markup from your week 7 `App.jsx` (or the week 6 reference).
+Create `src/components/Hero.jsx`, `About.jsx`, `Skills.jsx` and `Footer.jsx`, each exporting one function component with the matching markup from your week 7 `App.jsx` (or `week7-reference/App.jsx`).
 
 - **Skills:** put the six skills in a `const skills = [...]` array (name and level) and render them with `.map()`, each bar with `key={skill.name}` and its width taken from the level. No state is needed here.
 - **Hero, About, Footer:** presentational, no state.
 
 Then update `App.jsx` so its return statement is only the seven components in page order inside `<div className="portfolio">`, and `import './App.css'` at the top. Delete every leftover handler.
 
-**Checkpoint (end of Part 5):** `App.jsx` is under 40 lines and contains no markup beyond the seven component tags; every section renders as it did last week; the console is clean. Commit and push.
+**Last step, one piece of lifted state (do this before the extensions):** move the `projects` array out of `Projects.jsx` into `App.jsx` and pass it down as a prop (`<Projects projects={projects} />`); then pass `projects.length` to `Footer` as a prop and render it there ("6 projects"). `Projects` keeps its filter state. This is the shape Assignment 2 grades: the parent owns the data, the children receive it as props.
+
+**Checkpoint (end of Part 5):** `App.jsx` holds the `projects` array and no markup beyond the seven component tags; `Projects` and `Footer` read it as props; every section renders as it did last week; the console is clean. Commit and push.
 
 ### Extension Activities (requirements and hints only, no code given)
 
@@ -212,10 +216,10 @@ If you finish the five parts early, these are not bonus busywork. They are the t
 #### Tier 3 (about 15 to 25 minutes, a bounded task): an Assignment 2 rehearsal
 
 **3. State lifted to the parent, with delete and an empty state**
-- **Goal:** In a scratch folder outside this repository, run `npm create vite@latest rehearsal -- --template react` and build three components: `App` owns a `tasks` array in state, `TaskList` receives it as a prop and renders a `TaskItem` per task, and each `TaskItem` has a delete button that removes it. When the array is empty, `TaskList` shows a "No tasks yet" message.
+- **Goal:** In a scratch folder outside this repository, run `npm create vite@5 rehearsal -- --template react` (Vite 5 runs on Node 18, the same floor as the starter; `@latest` needs Node 20) and build three components: `App` owns a `tasks` array in state, `TaskList` receives it as a prop and renders a `TaskItem` per task, and each `TaskItem` has a delete button that removes it. When the array is empty, `TaskList` shows a "No tasks yet" message.
 - **Done when:** deleting works from inside `TaskItem` even though the state lives in `App`; the empty message appears after the last delete; no `key` warning.
 - **Ceiling, stop here:** no add form, no completion checkbox, no styling.
-- **Hint:** `App` defines `handleDelete(id)` with `setTasks(prev => prev.filter(t => t.id !== id))` and passes it down as a prop; the button calls it with its own task's `id`.
+- **Hint:** `App` defines `handleDelete(id)` with `setTasks(prev => prev.filter(t => t.id !== id))` and passes it down as a prop; the button calls it with its own task's `id`. The fresh scaffold is not identical to today's starter: read what `main.jsx`, `App.jsx` and `index.css` contain before you delete anything.
 - **Why it matters:** this is the component hierarchy Assignment 2 requires ("App owns the data; TaskList renders TaskItems") and two of its graded behaviors (delete, empty state).
 
 ### Troubleshooting Guide
@@ -302,6 +306,14 @@ npm run dev
 
 **Solution:**
 - Clear the one field's error inside the `onChange` handler with an immutable update (`setErrors(prev => ({ ...prev, [name]: '' }))`).
+
+**Problem:** Blank page, or the console says "does not provide an export named default" or "Failed to resolve import"
+
+**Solution:**
+- The component file must end with `export default Navbar` (its own name), and the import path must match the file: `import Navbar from './components/Navbar'` (no `.jsx` needed, but the folder and the capitalised name must be exact).
+- Save both files and watch the terminal: Vite prints the file and line of an import it cannot resolve.
+
+---
 
 ### Resources & References
 
